@@ -13,7 +13,7 @@ from armor_api.armor_client import ArmorClient
 
 suspects = ["Miss Scarlett","Mrs White","Mrs Peacock", "Reverend Green", "Professor Plum", "Colonel Mustard"]
 weapons = ["Dagger", "Candle Stick", "Revolver", "Rope", "Lead Pipe", "Spanner"]
-rooms = ["Hall", "Lounge","Dining Room", "Kitchen", "Ball Room" "Conservatory", "Billiard Room", "Library", "Study"]
+rooms = ["Hall", "Lounge","Dining Room", "Kitchen", "Ball Room", "Conservatory", "Billiard Room", "Library", "Study"]
 
 #######################################USARE NESTED LIST. COGLIONA.
 client = ArmorClient("cluedo", "ontology")
@@ -241,13 +241,22 @@ class Query(smach.State):
     def __init__(self):
     
         smach.State.__init__(self, 
-                             outcomes=['outcome1'],
-                             input_keys=['bar_counter_in'])
+                             outcomes=['go_around', 'go_to_oracle']
+                             )
         
     def execute(self, userdata):
         rospy.loginfo('Executing state QUERY')
         #rospy.loginfo('Counter = %f'%userdata.bar_counter_in)        
-        return 'outcome1'
+        inconsistent_list = client.query.ind_b2_class("INCONSISTENT")
+        complete_list = client.query.ind_b2_class("COMPLETED")
+        inconsistent_str = str (inconsistent_list)
+        complete_str = str (complete_list)
+        print (inconsistent_str)
+        print (complete_str)
+        if (complete_str.find ("HP"+str(ID)) != -1) and (inconsistent_str.find ("HP"+str(ID)) == -1):
+           return 'go_to_oracle'
+        else:
+           return 'go_around'
         
 #define state Oracle
 class Oracle (smach.State):
@@ -292,12 +301,12 @@ def main():
         # Add states to the container
         smach.StateMachine.add('EXPLORATION', Exploration(), 
                                transitions={'go_around':'EXPLORATION', 
-                                            'check_hypo':'ORACLE'},
+                                            'check_hypo':'QUERY'},
                                remapping={ 
                                           'myID':'sm_counter'})
         smach.StateMachine.add('QUERY', Query(), 
-                               transitions={'outcome1':'QUERY'})
-                               #remapping={'bar_counter_in':'sm_counter'})
+                               transitions={'go_to_oracle':'ORACLE', 
+                                            'go_around':'EXPLORATION'})
                                
         smach.StateMachine.add('ORACLE', Oracle(), 
                                transitions={'go_around':'EXPLORATION', 
