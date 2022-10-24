@@ -21,7 +21,7 @@ class oracle_server:
          global WinningID
          self.WinningID = random.choice (ID)
          print ('The winning ID is:', self.WinningID)
-         return self.WinningID; 
+         return self.WinningID 
      
      def comparison_callback (self, req):
          print ('Your request is:', req.ID)

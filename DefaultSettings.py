@@ -70,9 +70,9 @@ class DefaultSettings:
          for x in rooms:
             client.manipulation.add_ind_to_class(x, "PLACE")
             print ("Added", x, "to Place")
-         make_ind_of_class_disjoint ("PERSON")
-         make_ind_of_class_disjoint ("WEAPON")
-         make_ind_of_class_disjoint ("PLACE")
+         #make_ind_of_class_disjoint ("PERSON")
+         #make_ind_of_class_disjoint ("WEAPON")
+         #make_ind_of_class_disjoint ("PLACE")
      
      def changes_and_apply(self):
          client.utils.apply_buffered_changes()

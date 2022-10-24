@@ -15,6 +15,8 @@ suspects = ["Miss Scarlett","Mrs White","Mrs Peacock", "Reverend Green", "Profes
 weapons = ["Dagger", "Candle Stick", "Revolver", "Rope", "Lead Pipe", "Spanner"]
 rooms = ["Hall", "Lounge","Dining Room", "Kitchen", "Ball Room" "Conservatory", "Billiard Room", "Library", "Study"]
 
+#######################################USARE NESTED LIST. COGLIONA.
+client = ArmorClient("cluedo", "ontology")
 hp0 = list()
 hp1 = list()
 hp2 = list ()
@@ -25,6 +27,41 @@ hp6 = list ()
 hp7 = list ()
 hp8 = list ()
 hp9 = list ()  
+
+def make_ind_of_class_disjoint (class_name):
+        """
+        Disjoint all individuals of a class.
+    
+        Args:
+            ind_name (str): individual to be added to the class.
+            class_name (str): individual will be added to this class. It will be created a new class if it does not exist.
+    
+        Returns:
+            bool: True if ontology is consistent, else False
+    
+        Raises:
+            armor_api.exceptions.ArmorServiceCallError: if call to ARMOR fails
+            armor_api.exceptions.ArmorServiceInternalError: if ARMOR reports an internal error
+    
+        Note:
+            It returns the boolean consistency state of the ontology. This value is not updated to the last operation
+            if you are working in buffered reasoner or manipulation mode!
+        """
+        try:
+            res = client.call('DISJOINT', 'IND', 'CLASS', [class_name])
+    
+        except rospy.ServiceException as e:
+            raise ArmorServiceCallError(
+                "Service call failed upon adding individual {0} to class {1}: {2}".format(ind_name, class_name, e))
+    
+        except rospy.ROSException:
+            raise ArmorServiceCallError("Cannot reach ARMOR client: Timeout Expired. Check if ARMOR is running.")
+    
+        if res.success:
+            return res.is_consistent
+        else:
+            raise ArmorServiceInternalError(res.error_description, res.exit_code)
+            
 
 class hint_gen:
 
@@ -57,8 +94,8 @@ class oracle_query:
               print("Service call failed: %s"%e)
 
 def add_hypothesis (ID, item):
-    global client, HP
-    client = ArmorClient("cluedo", "ontology")
+    global HP
+    
     HP = "HP"+str(ID)
     myID = rospy.get_param (HP) #CONSISTENT
     client.manipulation.add_ind_to_class(HP, "HYPOTHESIS")
@@ -69,6 +106,12 @@ def add_hypothesis (ID, item):
         client.manipulation.add_objectprop_to_ind("where", HP, item)
     elif item in weapons:
         client.manipulation.add_objectprop_to_ind("what", HP, item)
+    #client.utils.apply_buffered_changes()
+    time.sleep (3)
+    #client.utils.sync_buffered_reasoner()
+    client.utils.apply_buffered_changes()
+    time.sleep (3)
+    client.utils.sync_buffered_reasoner()
     return ()
  ############## VEDERE COME FARE LE LISTE IN MANIERA CHE CORRISPONDANO ALL'ID, CRISTO JESOO ########
 
@@ -225,7 +268,8 @@ class Oracle (smach.State):
            print ('Your hypotesis is:', res.success)
            [killer, weapon, room] = winning_sequence (userdata.myID)
            # mettere qualcosa che faccia da storage di queste informazioni
-           print ('It was:', killer,' with:', weapon, 'in the:', room)        
+           print ('It was:', killer,' with:', weapon, 'in the:', room)   
+           client.utils.save_ref_with_inferences("/root/Desktop/inferred_cluedo.owl")     
            return 'end' #end of the game
         else:
            print('Your hypotesis is:',res.success)
@@ -235,7 +279,11 @@ class Oracle (smach.State):
 
 def main():
     rospy.init_node('cluedo_fsm')
-
+    
+    make_ind_of_class_disjoint ("PERSON")
+    make_ind_of_class_disjoint ("WEAPON")
+    make_ind_of_class_disjoint ("PLACE")
+    #make_ind_of_class_disjoint ("HYPOTHESIS")
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['outcome4'])
     sm.userdata.sm_counter = ''
@@ -259,7 +307,7 @@ def main():
     sm.execute()
     
     rospy.spin()
-    sis.stop()
+    #sis.stop()
 
 
 if __name__ == '__main__':
