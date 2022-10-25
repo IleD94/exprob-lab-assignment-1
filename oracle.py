@@ -9,7 +9,7 @@ from armor_msgs.srv import *
 from armor_api.armor_client import ArmorClient
 
 
-ID = ['0000','0001','0002','0003','0004','0005'] #only first 6 can be consistent and the winning sequence
+ID = ['0000','0001','0002','0003','0004'] #only first 6 can be consistent and the winning sequence
 
 class oracle_server:
 

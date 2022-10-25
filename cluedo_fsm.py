@@ -11,14 +11,17 @@ from armor_msgs.srv import *
 from armor_api.armor_client import ArmorClient
 
 
+######Global declarations
+
 suspects = ["Miss Scarlett","Mrs White","Mrs Peacock", "Reverend Green", "Professor Plum", "Colonel Mustard"]
 weapons = ["Dagger", "Candle Stick", "Revolver", "Rope", "Lead Pipe", "Spanner"]
 rooms = ["Hall", "Lounge","Dining Room", "Kitchen", "Ball Room", "Conservatory", "Billiard Room", "Library", "Study"]
 
-#######################################USARE NESTED LIST. COGLIONA.
 client = ArmorClient("cluedo", "ontology")
 
 hp = [[],[],[],[],[],[],[],[],[],[]]
+
+
 def make_ind_of_class_disjoint (class_name):
         """
         Disjoint all individuals of a class.
@@ -69,6 +72,7 @@ class hint_gen:
           except rospy.ServiceException as e:
               print("Service call failed: %s"%e)
 
+
 class oracle_query:
 
       def __init__(self):
@@ -79,10 +83,10 @@ class oracle_query:
           global oracle_res
           try:  
               self.oracle_res = self.srv_oracle_client (myID)
-              print ('Your hypothesis is:', self.oracle_res)
               return self.oracle_res
           except rospy.ServiceException as e:
               print("Service call failed: %s"%e)
+
 
 def add_hypothesis (ID, item):
     global HP
@@ -97,21 +101,17 @@ def add_hypothesis (ID, item):
         client.manipulation.add_objectprop_to_ind("where", HP, item)
     elif item in weapons:
         client.manipulation.add_objectprop_to_ind("what", HP, item)
-    #client.utils.apply_buffered_changes()
-    time.sleep (3)
-    #client.utils.sync_buffered_reasoner()
     client.utils.apply_buffered_changes()
-    time.sleep (3)
     client.utils.sync_buffered_reasoner()
     return ()
- ############## VEDERE COME FARE LE LISTE IN MANIERA CHE CORRISPONDANO ALL'ID, CRISTO JESOO ########
+
 
 def storage_hypo (ID, item, hpi):
     if item not in hpi:
        hpi.append (item) 
        print (hpi , 'The ID is:', ID) 
     return ()
- ################################################################################################## 
+
  
 def winning_sequence (myID):
     for i in range (6):
@@ -126,6 +126,7 @@ def winning_sequence (myID):
                else: 
                   print ('Error in the winning sequence')
     return killer, weapon, room  
+
 
 # define state1 EXPLORATION
 class Exploration(smach.State):
@@ -142,16 +143,14 @@ class Exploration(smach.State):
         print ("I'm going to the:", get_random_room)
         time.sleep(5)
         ID = random.randint(0,9)
-        print (ID)
-        # return (ID)
         hint = hint_gen ()
         res = hint.hint_client(ID)
         userdata.myID=res.myID
-        print ('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',res.myID)
         add_hypothesis (ID, res.hint)
         for i in range (len(hp)):
             if HP == 'HP'+str(i):
                storage_hypo (ID, res.hint, hp[i])
+               print ('This is what we know until now about this hypothesis:', hp[ID])
                if len (hp[i]) >= 3 :
                   return 'check_hypo'
                else:
@@ -166,17 +165,16 @@ class Query(smach.State):
                              )
         
     def execute(self, userdata):
-        rospy.loginfo('Executing state QUERY')
-        #rospy.loginfo('Counter = %f'%userdata.bar_counter_in)        
+        rospy.loginfo('Executing state QUERY')       
         inconsistent_list = client.query.ind_b2_class("INCONSISTENT")
         complete_list = client.query.ind_b2_class("COMPLETED")
         inconsistent_str = str (inconsistent_list)
         complete_str = str (complete_list)
-        print (inconsistent_str)
-        print (complete_str)
         if (complete_str.find ("HP"+str(ID)) != -1) and (inconsistent_str.find ("HP"+str(ID)) == -1):
+           print ('The HP'+str(ID),'is CONSISTENT')
            return 'go_to_oracle'
         else:
+           print ('The HP'+str(ID),'is INCONSISTENT')
            return 'go_around'
         
 #define state Oracle
@@ -187,23 +185,20 @@ class Oracle (smach.State):
                              input_keys=['myID'])
     def execute(self, userdata):
         rospy.loginfo('Executing state Oracle')
-        print ("I'm going to the Oracle room")
-        #time.sleep (5)
-        print ('questo è:', userdata.myID)
+        print ("I'm going to the Oracle room...")
+        time.sleep (5)
+        [killer, weapon, room] = winning_sequence (userdata.myID)
+        print ('I accuse! It was', killer,' with', weapon,' in ',room, '!')
         oracle = oracle_query()
-        #print ('questo è:', myID)
         res= oracle.oracle_client(userdata.myID)
-        print (res.success)
         if res.success :
-           print ('Your hypotesis is:', res.success)
-           [killer, weapon, room] = winning_sequence (userdata.myID)
-           # mettere qualcosa che faccia da storage di queste informazioni
-           print ('It was:', killer,' with:', weapon, 'in the:', room)   
+           print ('Your hypotesis with ID:', userdata.myID, 'is:', res.success, 'You win detective Bot!')
+           print (killer,'killed Dr. Black with:', weapon, 'in the:', room)   
            client.utils.save_ref_with_inferences("/root/Desktop/inferred_cluedo.owl")     
            return 'end' #end of the game
         else:
-           print('Your hypotesis is:',res.success)
-           print ('go on with your research')
+           print ('Your hypotesis with ID:', userdata.myID, 'is:', res.success)
+           print ('You loose, go on with your research Detective Bot!')
            return 'go_around'                     
 
 
@@ -213,10 +208,11 @@ def main():
     make_ind_of_class_disjoint ("PERSON")
     make_ind_of_class_disjoint ("WEAPON")
     make_ind_of_class_disjoint ("PLACE")
-    #make_ind_of_class_disjoint ("HYPOTHESIS")
+    
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['outcome4'])
     sm.userdata.sm_counter = ''
+    
     # Open the container
     with sm:
         # Add states to the container
@@ -233,11 +229,15 @@ def main():
                                transitions={'go_around':'EXPLORATION', 
                                             'end' : 'outcome4'},
                                remapping={'myID':'sm_counter'})
+    
+    sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
+    sis.start()
+    
     # Execute SMACH plan
     sm.execute()
     
     rospy.spin()
-    #sis.stop()
+    sis.stop()
 
 
 if __name__ == '__main__':
