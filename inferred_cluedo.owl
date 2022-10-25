@@ -235,11 +235,9 @@
 
     <owl:Thing rdf:about="http://www.emarolab.it/cluedo-ontology#HP0">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Candle Stick"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Kitchen"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Colonel Mustard"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Revolver"/>
+        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Ball Room"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0000</hasID>
     </owl:Thing>
     
@@ -252,9 +250,9 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Lead Pipe"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Lounge"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Colonel Mustard"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Spanner"/>
+        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Library"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Professor Plum"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0001</hasID>
     </owl:Thing>
     
@@ -268,7 +266,7 @@
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
         <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Candle Stick"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Lounge"/>
+        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Library"/>
         <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Reverend Green"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0002</hasID>
     </owl:Thing>
@@ -282,9 +280,9 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Candle Stick"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Library"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Professor Plum"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Lead Pipe"/>
+        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Kitchen"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Mrs Peacock"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0003</hasID>
     </owl:Thing>
     
@@ -297,8 +295,8 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Revolver"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Lounge"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Lead Pipe"/>
+        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Library"/>
         <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Mrs White"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0004</hasID>
     </owl:Thing>
@@ -312,7 +310,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
         <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Billiard Room"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Colonel Mustard"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Reverend Green"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0005</hasID>
     </owl:Thing>
     
@@ -324,8 +322,8 @@
     <owl:Thing rdf:about="http://www.emarolab.it/cluedo-ontology#HP6">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Spanner"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Mrs White"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Candle Stick"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Reverend Green"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0006</hasID>
     </owl:Thing>
     
@@ -339,12 +337,10 @@
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#INCONSISTENT"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Rope"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Lead Pipe"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Conservatory"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Spanner"/>
+        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Study"/>
         <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Ball Room"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Miss Scarlett"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Professor Plum"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Reverend Green"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0007</hasID>
     </owl:Thing>
     
@@ -358,10 +354,13 @@
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#INCONSISTENT"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Revolver"/>
+        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Rope"/>
         <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Spanner"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Library"/>
+        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Billiard Room"/>
         <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Colonel Mustard"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Miss Scarlett"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Mrs Peacock"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Reverend Green"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0008</hasID>
     </owl:Thing>
     
@@ -372,14 +371,8 @@
 
     <owl:Thing rdf:about="http://www.emarolab.it/cluedo-ontology#HP9">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#COMPLETED"/>
         <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#HYPOTHESIS"/>
-        <rdf:type rdf:resource="http://www.emarolab.it/cluedo-ontology#INCONSISTENT"/>
-        <what rdf:resource="http://www.emarolab.it/cluedo-ontology#Lead Pipe"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Hall"/>
-        <where rdf:resource="http://www.emarolab.it/cluedo-ontology#Dining Room"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Colonel Mustard"/>
-        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Mrs Peacock"/>
+        <who rdf:resource="http://www.emarolab.it/cluedo-ontology#Reverend Green"/>
         <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0009</hasID>
     </owl:Thing>
     
