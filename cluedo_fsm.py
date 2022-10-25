@@ -17,17 +17,8 @@ rooms = ["Hall", "Lounge","Dining Room", "Kitchen", "Ball Room", "Conservatory",
 
 #######################################USARE NESTED LIST. COGLIONA.
 client = ArmorClient("cluedo", "ontology")
-hp0 = list()
-hp1 = list()
-hp2 = list ()
-hp3 = list ()
-hp4 = list ()
-hp5 = list ()
-hp6 = list ()
-hp7 = list ()
-hp8 = list ()
-hp9 = list ()  
 
+hp = [[],[],[],[],[],[],[],[],[],[]]
 def make_ind_of_class_disjoint (class_name):
         """
         Disjoint all individuals of a class.
@@ -120,39 +111,22 @@ def storage_hypo (ID, item, hpi):
        hpi.append (item) 
        print (hpi , 'The ID is:', ID) 
     return ()
- ##################################################################################################
-def sort_win_sequence (hp):
-    for i in range(len(hp)):
-           if hp[i] in suspects:
-              killer = hp[i]
-           if hp[i] in weapons:
-              weapon = hp[i]
-           if hp[i] in rooms:
-              room = hp[i]
-    return killer, weapon, room  
+ ################################################################################################## 
  
 def winning_sequence (myID):
-    if myID == '0000':
-       [killer, weapon, room] = sort_win_sequence (hp0)
-    elif myID == '0001':
-       [killer, weapon, room] = sort_win_sequence (hp1)     
-    elif myID == '0002':
-       [killer, weapon, room] = sort_win_sequence (hp2)
-    elif myID == '0003':
-       [killer, weapon, room] = sort_win_sequence (hp3)
-    elif myID == '0004':
-       [killer, weapon, room] = sort_win_sequence (hp4)
-    elif myID == '0005':
-       [killer, weapon, room] = sort_win_sequence (hp5)
-    elif myID == '0006':
-       [killer, weapon, room] = sort_win_sequence (hp6)
-    elif myID == '0007':
-       [killer, weapon, room] = sort_win_sequence (hp7)
-    elif myID == '0008':
-       [killer, weapon, room] = sort_win_sequence (hp8)
-    elif myID == '0009':
-       [killer, weapon, room] = sort_win_sequence (hp9)                    
-    return killer, weapon, room
+    for i in range (6):
+        if myID == '000'+str(i):
+           for j in range(len(hp[i])):
+               if hp[i][j] in suspects:
+                  killer = hp[i][j]
+               elif hp[i][j] in weapons:
+                  weapon = hp[i][j]
+               elif hp[i][j] in rooms:
+                  room = hp[i][j]
+               else: 
+                  print ('Error in the winning sequence')
+    return killer, weapon, room  
+
 # define state1 EXPLORATION
 class Exploration(smach.State):
     def __init__(self):
@@ -175,67 +149,14 @@ class Exploration(smach.State):
         userdata.myID=res.myID
         print ('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',res.myID)
         add_hypothesis (ID, res.hint)
-        if HP == 'HP0' :
-           storage_hypo (ID, res.hint, hp0)
-           if len (hp0) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP1' :
-           storage_hypo (ID, res.hint, hp1)
-           if len (hp1) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP2' :
-           storage_hypo (ID, res.hint, hp2)
-           if len (hp2) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP3' :
-           storage_hypo (ID, res.hint, hp3)
-           if len (hp3) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP4' :
-           storage_hypo (ID, res.hint, hp4)
-           if len (hp4) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP5' :
-           storage_hypo (ID, res.hint, hp5)
-           if len (hp5) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP6' :
-           storage_hypo (ID, res.hint, hp6)
-           if len (hp6) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP7' :
-           storage_hypo (ID, res.hint, hp7)
-           if len (hp7) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        elif HP == 'HP8' :
-           storage_hypo (ID, res.hint, hp8)
-           if len (hp8) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'
-        else :
-           storage_hypo (ID, res.hint, hp9)
-           if len (hp9) >= 3 :
-              return 'check_hypo'
-           else:
-              return 'go_around'     
-
+        for i in range (len(hp)):
+            if HP == 'HP'+str(i):
+               storage_hypo (ID, res.hint, hp[i])
+               if len (hp[i]) >= 3 :
+                  return 'check_hypo'
+               else:
+                  return 'go_around'
+        
 # define state Query
 class Query(smach.State):
     def __init__(self):
