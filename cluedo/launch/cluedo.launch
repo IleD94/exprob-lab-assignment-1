@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+        <node name="armor_service" pkg="armor" type="execute" args="it.emarolab.armor.ARMORMainService" />
+        <node name="default_settings" pkg="cluedo" type="DefaultSettings.py"/>
+        <node name="oracle" pkg="cluedo" type="oracle.py"/>
+        <node name="cluedo_fsm" pkg="cluedo" type="cluedo_fsm.py" />
+        <node name="user_interface" pkg="cluedo" type="user_interface.py" output= "screen"/>
+        <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py"/>
+</launch>
