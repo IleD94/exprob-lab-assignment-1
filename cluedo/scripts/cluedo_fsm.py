@@ -244,7 +244,10 @@ class Query(smach.State):
                              )
         
     def execute(self, userdata):
-        rospy.loginfo('Executing state QUERY')       
+        rospy.loginfo('Executing state QUERY')  
+        make_ind_of_class_disjoint ("PERSON")
+        make_ind_of_class_disjoint ("WEAPON")
+        make_ind_of_class_disjoint ("PLACE")     
         inconsistent_list = client.query.ind_b2_class("INCONSISTENT")
         complete_list = client.query.ind_b2_class("COMPLETED")
         inconsistent_str = str (inconsistent_list)
@@ -299,10 +302,7 @@ class Oracle (smach.State):
 
 def main():
     rospy.init_node('cluedo_fsm')
-    time.sleep (5)
-    make_ind_of_class_disjoint ("PERSON")
-    make_ind_of_class_disjoint ("WEAPON")
-    make_ind_of_class_disjoint ("PLACE")
+    
     
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['outcome4'])
@@ -327,7 +327,7 @@ def main():
     sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
     sis.start()
     
-    
+    time.sleep (5)
     # Execute SMACH plan
     sm.execute()
     
