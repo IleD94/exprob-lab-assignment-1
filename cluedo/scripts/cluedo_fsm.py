@@ -251,9 +251,11 @@ class Query(smach.State):
         inconsistent_list = client.query.ind_b2_class("INCONSISTENT")
         complete_list = client.query.ind_b2_class("COMPLETED")
         inconsistent_str = str (inconsistent_list)
+        print (inconsistent_str)
         complete_str = str (complete_list)
+        print (complete_str)
         if (complete_str.find ("HP"+str(ID)) != -1):
-           user_interface ('The HP'+str(ID)+' is COMPLETE')
+           #user_interface ('The HP'+str(ID)+' is COMPLETE')
            if (inconsistent_str.find ("HP"+str(ID)) == -1):
               user_interface ('The HP'+str(ID)+' is CONSISTENT')
               time.sleep(1)
