@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+""" 
+@package cluedo state machine
+This node handles the states of the FSM
+divided in: EXPLORATION, QUERY, ORACLE
+"""
 import rospy
 import smach
 import smach_ros
@@ -9,7 +14,7 @@ from cluedo.srv import Hint, HypothesisID
 from armor_msgs.msg import *
 from armor_msgs.srv import *
 from armor_api.armor_client import ArmorClient
-
+from std_msgs.msg import String
 
 ######Global declarations
 
@@ -24,11 +29,11 @@ hp = [[],[],[],[],[],[],[],[],[],[]]
 
 def make_ind_of_class_disjoint (class_name):
         """
-        Disjoint all individuals of a class.
+        /brief Disjoint all individuals of a class in an ontology by comunication with the armor server.
     
         Args:
-            ind_name (str): individual to be added to the class.
-            class_name (str): individual will be added to this class. It will be created a new class if it does not exist.
+            ind_name (str): individual to be disjointed to the class.
+            class_name (str): individual will be disjointed to this class. It will be created a new class if it does not exist.
     
         Returns:
             bool: True if ontology is consistent, else False
@@ -56,30 +61,71 @@ def make_ind_of_class_disjoint (class_name):
         else:
             raise ArmorServiceInternalError(res.error_description, res.exit_code)
             
+def user_interface(msg):
+
+    
+        pub = rospy.Publisher('cluedo_ui', String, queue_size=10) 
+        time.sleep(1)
+        try:
+            rospy.loginfo(msg)
+            pub.publish(msg)
+        except rospy.ROSInterruptException:
+            pass
+        
+        
+
 
 class hint_gen:
+      """
+      Class hint_gen manages the client of the hint_generator service 
+      custom service: Hint
 
+      """
       def __init__(self):
           rospy.wait_for_service('hint_generator')
           self.srv_hint_client = rospy.ServiceProxy('hint_generator', Hint)
       
       def hint_client(self, ID):
+          """
+          /brief client of the serice hint_generator
+          custom service: Hint
+              uint32 ID
+              ---
+              string myID
+              string hint
+          @param req: uint32 ID
+          @return string: myID a code for the source 
+          @return string: hint an hint of kind who, where or what
+          """
           global res
           try:  
               self.res = self.srv_hint_client (ID)
-              print ('Your hint is:', self.res.hint, 'and the ID is:', self.res.myID)
+              user_interface ('Your hint is: '+ self.res.hint + ' and the ID is: '+ self.res.myID)
               return self.res
           except rospy.ServiceException as e:
               print("Service call failed: %s"%e)
 
 
 class oracle_query:
+      """
+      Class oracle_query manages the client of the compare_hypothesis service 
+      custom service: HypotesisID
 
+      """
       def __init__(self):
           rospy.wait_for_service('compare_hypothesis')
           self.srv_oracle_client = rospy.ServiceProxy('compare_hypothesis', HypothesisID)
       
       def oracle_client(self, myID):
+          """
+          /brief client of the service compare_hypotesis
+          custom service: HypothesisID
+              uint32 ID
+              ---
+              bool success
+          @param req: uint32 ID
+          @return bool: true if the the elements are the same, false if they are not
+          """    
           global oracle_res
           try:  
               self.oracle_res = self.srv_oracle_client (myID)
@@ -89,6 +135,14 @@ class oracle_query:
 
 
 def add_hypothesis (ID, item):
+    """
+    /brief this function add items in the class HYPOTHESIS in the cluedo ontology
+    and add an individual to the object property who, where and what, depending on 
+    the kind of hint that it has received from the hint_generator. At the end it
+    saves the changes and synchronize the reasoner using armor api.
+    @param ID: uint32 with the number of the source
+    @param item: the hint to add in the cluedo ontology as where, who or what instance 
+    """
     global HP
     
     HP = "HP"+str(ID)
@@ -107,6 +161,13 @@ def add_hypothesis (ID, item):
 
 
 def storage_hypo (ID, item, hpi):
+    """
+    /brief this function add the last hint to the 
+    list of the hypothesis if it is not present yet
+    @param req: uint32 ID
+    @param item: the hint to add in the list of the specific hypothesis 
+    @param hpi: the array of the hypothesis that contains the hints that we got until now from that source 
+    """
     if item not in hpi:
        hpi.append (item) 
        print (hpi , 'The ID is:', ID) 
@@ -114,7 +175,14 @@ def storage_hypo (ID, item, hpi):
 
  
 def winning_sequence (myID):
-    for i in range (6):
+    """
+    This function recognizes and sorts into killer, weapon and room the hints of
+    a complete and consistent hypothesis. In order to check if can be the winning
+    sequence of the game
+    @param my ID: string with the code of one source
+    @return string killer, weapon and room
+    """
+    for i in range (10):
         if myID == '000'+str(i):
            for j in range(len(hp[i])):
                if hp[i][j] in suspects:
@@ -130,9 +198,15 @@ def winning_sequence (myID):
 
 # define state1 EXPLORATION
 class Exploration(smach.State):
+    """
+    Classe Exploration it is the first state of the cluedo fsm
+    Here the robot chooses randomly rooms and reaches them, then it gets
+    an hint and restart again this process until it has an hypothesis with 3 items,
+    when this happens the state machines goes into the state 2 QUERY 
+    """
     def __init__(self):
         smach.State.__init__(self, 
-                             outcomes=['go_around','check_hypo',],
+                             outcomes=['check_hypo'],
                              #input_keys=['foo_counter_in'],
                              output_keys=['myID'])
 
@@ -140,8 +214,9 @@ class Exploration(smach.State):
         rospy.loginfo('Executing state Exploration')
         global ID
         get_random_room = random.choice(rooms)
-        print ("I'm going to the:", get_random_room)
+        user_interface ("I'm going to the: "+ get_random_room)
         time.sleep(5)
+        user_interface ("REACHED!")
         ID = random.randint(0,9)
         hint = hint_gen ()
         res = hint.hint_client(ID)
@@ -150,14 +225,18 @@ class Exploration(smach.State):
         for i in range (len(hp)):
             if HP == 'HP'+str(i):
                storage_hypo (ID, res.hint, hp[i])
-               print ('This is what we know until now about this hypothesis:', hp[ID])
-               if len (hp[i]) >= 3 :
-                  return 'check_hypo'
-               else:
-                  return 'go_around'
+               user_interface ('This is what we know until now about this hypothesis: '+ str(hp[ID]))
+               return 'check_hypo'
         
-# define state Query
+# define state2 Query
 class Query(smach.State):
+    """
+    Class Query is the second state of the cluedo fsm.
+    Here the robot checks if the hypothesis is complete and not inconsistent, talking
+    with the armor server using the api of the armor client,
+    if it is in this way it goes to the third state ORACLE to make the accusation and
+    check if it is the winning hypothesis, otherwise it returns to the state1
+    """
     def __init__(self):
     
         smach.State.__init__(self, 
@@ -165,49 +244,67 @@ class Query(smach.State):
                              )
         
     def execute(self, userdata):
-        rospy.loginfo('Executing state QUERY')       
+        rospy.loginfo('Executing state QUERY')  
+        make_ind_of_class_disjoint ("PERSON")
+        make_ind_of_class_disjoint ("WEAPON")
+        make_ind_of_class_disjoint ("PLACE")     
         inconsistent_list = client.query.ind_b2_class("INCONSISTENT")
         complete_list = client.query.ind_b2_class("COMPLETED")
         inconsistent_str = str (inconsistent_list)
+        print (inconsistent_str)
         complete_str = str (complete_list)
-        if (complete_str.find ("HP"+str(ID)) != -1) and (inconsistent_str.find ("HP"+str(ID)) == -1):
-           print ('The HP'+str(ID),'is CONSISTENT')
-           return 'go_to_oracle'
+        print (complete_str)
+        if (complete_str.find ("HP"+str(ID)) != -1):
+           #user_interface ('The HP'+str(ID)+' is COMPLETE')
+           if (inconsistent_str.find ("HP"+str(ID)) == -1):
+              user_interface ('The HP'+str(ID)+' is CONSISTENT')
+              time.sleep(1)
+              return 'go_to_oracle'
+           else:
+              user_interface ('The HP'+str(ID)+' is INCONSISTENT')
+              time.sleep(1)
+              return 'go_around'
         else:
-           print ('The HP'+str(ID),'is INCONSISTENT')
+           user_interface ('The HP'+str(ID)+' is INCOMPLETE')
            return 'go_around'
         
-#define state Oracle
+#define state3 Oracle
 class Oracle (smach.State):
+    """
+    Class Oracle is the third state of the cluedo fsm.
+    It checks if the hypothesis received has the winning ID code, asking
+    to the oracle that compares it with the ID of the winner.
+    If it is not the winner. It return to the state 1 otherwise it ends the
+    state machine.
+    """
+    
     def __init__(self):
         smach.State.__init__(self, 
                              outcomes=['go_around', 'end'],
                              input_keys=['myID'])
     def execute(self, userdata):
         rospy.loginfo('Executing state Oracle')
-        print ("I'm going to the Oracle room...")
+        user_interface ("I'm going to the Oracle room...")
         time.sleep (5)
+        user_interface ("REACHED!")
         [killer, weapon, room] = winning_sequence (userdata.myID)
-        print ('I accuse! It was', killer,' with', weapon,' in ',room, '!')
+        user_interface ('I accuse! It was '+ killer +' with '+ weapon +' in '+ room+ '!')
         oracle = oracle_query()
         res= oracle.oracle_client(userdata.myID)
         if res.success :
-           print ('Your hypotesis with ID:', userdata.myID, 'is:', res.success, 'You win detective Bot!')
-           print (killer,'killed Dr. Black with:', weapon, 'in the:', room)   
+           user_interface ('Your hypotesis with ID: '+ userdata.myID + ' is: '+ str (res.success) + ' You WIN, Detective Bot!')
+           user_interface (killer + ' killed Dr. Black with '+ weapon+ ' in the '+ room)   
            client.utils.save_ref_with_inferences("/root/Desktop/inferred_cluedo.owl")     
            return 'end' #end of the game
         else:
-           print ('Your hypotesis with ID:', userdata.myID, 'is:', res.success)
-           print ('You loose, go on with your research Detective Bot!')
+           user_interface ('Your hypotesis with ID: '+ userdata.myID + ' is: '+ str(res.success))
+           user_interface ('You LOOSE, go on with your research, Detective Bot!')
            return 'go_around'                     
 
 
 def main():
     rospy.init_node('cluedo_fsm')
     
-    make_ind_of_class_disjoint ("PERSON")
-    make_ind_of_class_disjoint ("WEAPON")
-    make_ind_of_class_disjoint ("PLACE")
     
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['outcome4'])
@@ -217,10 +314,9 @@ def main():
     with sm:
         # Add states to the container
         smach.StateMachine.add('EXPLORATION', Exploration(), 
-                               transitions={'go_around':'EXPLORATION', 
-                                            'check_hypo':'QUERY'},
-                               remapping={ 
-                                          'myID':'sm_counter'})
+                               transitions={'check_hypo':'QUERY'},
+                               remapping={'myID':'sm_counter'})
+                               
         smach.StateMachine.add('QUERY', Query(), 
                                transitions={'go_to_oracle':'ORACLE', 
                                             'go_around':'EXPLORATION'})
@@ -233,11 +329,13 @@ def main():
     sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
     sis.start()
     
+    time.sleep (5)
     # Execute SMACH plan
     sm.execute()
     
-    rospy.spin()
-    sis.stop()
+    while not rospy.is_shutdown():
+       rospy.spin()
+       sis.stop()
 
 
 if __name__ == '__main__':
