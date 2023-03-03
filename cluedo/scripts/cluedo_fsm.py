@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 """ 
-@package cluedo state machine
-This node handles the states of the FSM
+@package cluedo, state machine
+This node, 'cluedo_fsm', handles the states of the FSM
 divided in: EXPLORATION, QUERY, ORACLE
 """
 import rospy
@@ -24,6 +24,8 @@ rooms = ["Hall", "Lounge","Dining Room", "Kitchen", "Ball Room", "Conservatory",
 
 client = ArmorClient("cluedo", "ontology")
 
+
+id_list= []
 hp = [[],[],[],[],[],[],[],[],[],[]]
 
 
@@ -62,7 +64,11 @@ def make_ind_of_class_disjoint (class_name):
             raise ArmorServiceInternalError(res.error_description, res.exit_code)
             
 def user_interface(msg):
-
+        """
+        /brief userinterface publisher. It sends a screen that is shown on the screen
+        @param msg: String
+        @return : None
+        """
     
         pub = rospy.Publisher('cluedo_ui', String, queue_size=10) 
         time.sleep(1)
@@ -258,8 +264,13 @@ class Query(smach.State):
            #user_interface ('The HP'+str(ID)+' is COMPLETE')
            if (inconsistent_str.find ("HP"+str(ID)) == -1):
               user_interface ('The HP'+str(ID)+' is CONSISTENT')
-              time.sleep(1)
-              return 'go_to_oracle'
+              if ID in id_list:
+                  user_interface ("But we've already checked and it is not the winning one")
+                  return 'go_around'
+              else:
+                  id_list.append(ID)
+                  time.sleep(1)
+                  return 'go_to_oracle'
            else:
               user_interface ('The HP'+str(ID)+' is INCONSISTENT')
               time.sleep(1)
