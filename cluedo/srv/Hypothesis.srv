@@ -1,5 +1,0 @@
-string who
-string where
-string what
----
-bool winning_hyp
