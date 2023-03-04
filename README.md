@@ -67,7 +67,13 @@ Thid node implements a final state machine using smach package for ros. The stat
 ## Sequence diagram
 (AGGIUNGERE SEQUENCE DIAGRAM CON QUALCHE SPIEGAZIONE)
 
-# Contacts
+## How to run
+
+In order to run the code you have to launch the launch file present in the launch in cluedo folder.
+
+'roslaunch cluedo cluedo.launch'
+
+## Contacts
 
 Autor: Ilenia D'Angelo
 email: ileniadangelo94@gmail.com
