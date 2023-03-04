@@ -77,5 +77,6 @@ roslaunch cluedo cluedo.launch
 
 ## Contacts
 
-Autor: Ilenia D'Angelo
+Autor: Ilenia D'Angelo,
+
 email: ileniadangelo94@gmail.com
