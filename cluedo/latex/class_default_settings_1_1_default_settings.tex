@@ -1,0 +1,207 @@
+\hypertarget{class_default_settings_1_1_default_settings}{}\doxysection{Default\+Settings.\+Default\+Settings Class Reference}
+\label{class_default_settings_1_1_default_settings}\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_default_settings_1_1_default_settings_a1703023fd5cfab3e00dd1c59762f8072}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{class_default_settings_1_1_default_settings_ade77bd72016590c6ff15af4cb95fff90}{load\+\_\+ontology}} (self)
+\item 
+def \mbox{\hyperlink{class_default_settings_1_1_default_settings_adfe15ae41c7889b131bb53c0c812869f}{add\+\_\+item\+\_\+into\+\_\+class}} (self)
+\item 
+def \mbox{\hyperlink{class_default_settings_1_1_default_settings_ae1321db8660eb29e9ca3e853f44b0d71}{changes\+\_\+and\+\_\+apply}} (self)
+\item 
+def \mbox{\hyperlink{class_default_settings_1_1_default_settings_ad926fb66b0bed017b81afaf8a4dca902}{hint\+\_\+gen}} (self)
+\item 
+def \mbox{\hyperlink{class_default_settings_1_1_default_settings_a6aad57a88283885443c5d0103e076886}{hint\+\_\+callback}} (self, req)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_default_settings_1_1_default_settings_ac0badaa54f97785c781ff357ef4d3aa7}{hint\+\_\+service}}
+\item 
+\mbox{\hyperlink{class_default_settings_1_1_default_settings_aad8cc1b9f329c57454d2a4410d69f941}{who}}
+\item 
+\mbox{\hyperlink{class_default_settings_1_1_default_settings_ac72fcc2cc43cd7486dbb7053c32f92e0}{where}}
+\item 
+\mbox{\hyperlink{class_default_settings_1_1_default_settings_a55388edb1bef6d76ee7c91dd69b6af5b}{what}}
+\item 
+\mbox{\hyperlink{class_default_settings_1_1_default_settings_ac2bdf9b713197061fc4d43e8f3d1abb9}{hint}}
+\item 
+\mbox{\hyperlink{class_default_settings_1_1_default_settings_a2f7ae5522be88a890c37eb40430be780}{my\+ID}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Class DefaultSettings manages the setting of the 
+cluedo ontology, it loads the ontology, adds classes and individuals to those classes. 
+It has all the functions necessary to comunicate with armor server, 
+using armor client api in order to add individuals to classes,  
+save changes and sincronyze the reasoner 
+\end{DoxyVerb}
+ 
+
+Definition at line 23 of file Default\+Settings.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_a1703023fd5cfab3e00dd1c59762f8072}\label{class_default_settings_1_1_default_settings_a1703023fd5cfab3e00dd1c59762f8072}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Default\+Settings.\+Default\+Settings.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 32 of file Default\+Settings.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_adfe15ae41c7889b131bb53c0c812869f}\label{class_default_settings_1_1_default_settings_adfe15ae41c7889b131bb53c0c812869f}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!add\_item\_into\_class@{add\_item\_into\_class}}
+\index{add\_item\_into\_class@{add\_item\_into\_class}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{add\_item\_into\_class()}{add\_item\_into\_class()}}
+{\footnotesize\ttfamily def Default\+Settings.\+Default\+Settings.\+add\+\_\+item\+\_\+into\+\_\+class (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief function to add the individuals to each specific class
+\end{DoxyVerb}
+ 
+
+Definition at line 47 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_ae1321db8660eb29e9ca3e853f44b0d71}\label{class_default_settings_1_1_default_settings_ae1321db8660eb29e9ca3e853f44b0d71}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!changes\_and\_apply@{changes\_and\_apply}}
+\index{changes\_and\_apply@{changes\_and\_apply}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{changes\_and\_apply()}{changes\_and\_apply()}}
+{\footnotesize\ttfamily def Default\+Settings.\+Default\+Settings.\+changes\+\_\+and\+\_\+apply (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief function to save changes and reason on those
+\end{DoxyVerb}
+ 
+
+Definition at line 62 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_a6aad57a88283885443c5d0103e076886}\label{class_default_settings_1_1_default_settings_a6aad57a88283885443c5d0103e076886}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!hint\_callback@{hint\_callback}}
+\index{hint\_callback@{hint\_callback}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{hint\_callback()}{hint\_callback()}}
+{\footnotesize\ttfamily def Default\+Settings.\+Default\+Settings.\+hint\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{req }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief it is the callback of the hint_generator service 
+it receive an int that is the ID of the source and considering that
+it chooses just one hint from among the lists who, where, what and returns that
+and one string id for the hypothesis.
+custom service: Hint
+     uint32 ID
+     ---
+     string myID
+     string hint
+@param req: uint32 ID
+@return string: myID a code for the source 
+@return string: hint an hint of kind who, where or what
+\end{DoxyVerb}
+ 
+
+Definition at line 104 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_ad926fb66b0bed017b81afaf8a4dca902}\label{class_default_settings_1_1_default_settings_ad926fb66b0bed017b81afaf8a4dca902}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!hint\_gen@{hint\_gen}}
+\index{hint\_gen@{hint\_gen}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{hint\_gen()}{hint\_gen()}}
+{\footnotesize\ttfamily def Default\+Settings.\+Default\+Settings.\+hint\+\_\+gen (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief it is the callback of the compare hypothesis service 
+compare one ID that will be the winning one of the game
+custom service: HypothesisID
+     uint32 ID
+     ---
+     bool success
+@param req: uint32 ID
+@return bool: true if the the elements are the same, false if they are not
+\end{DoxyVerb}
+ 
+
+Definition at line 79 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_ade77bd72016590c6ff15af4cb95fff90}\label{class_default_settings_1_1_default_settings_ade77bd72016590c6ff15af4cb95fff90}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!load\_ontology@{load\_ontology}}
+\index{load\_ontology@{load\_ontology}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{load\_ontology()}{load\_ontology()}}
+{\footnotesize\ttfamily def Default\+Settings.\+Default\+Settings.\+load\+\_\+ontology (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief function to load the ontology in the armor server and to set the reasoner
+\end{DoxyVerb}
+ 
+
+Definition at line 36 of file Default\+Settings.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_ac2bdf9b713197061fc4d43e8f3d1abb9}\label{class_default_settings_1_1_default_settings_ac2bdf9b713197061fc4d43e8f3d1abb9}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!hint@{hint}}
+\index{hint@{hint}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{hint}{hint}}
+{\footnotesize\ttfamily Default\+Settings.\+Default\+Settings.\+hint}
+
+
+
+Definition at line 123 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_ac0badaa54f97785c781ff357ef4d3aa7}\label{class_default_settings_1_1_default_settings_ac0badaa54f97785c781ff357ef4d3aa7}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!hint\_service@{hint\_service}}
+\index{hint\_service@{hint\_service}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{hint\_service}{hint\_service}}
+{\footnotesize\ttfamily Default\+Settings.\+Default\+Settings.\+hint\+\_\+service}
+
+
+
+Definition at line 33 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_a2f7ae5522be88a890c37eb40430be780}\label{class_default_settings_1_1_default_settings_a2f7ae5522be88a890c37eb40430be780}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!myID@{myID}}
+\index{myID@{myID}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{myID}{myID}}
+{\footnotesize\ttfamily Default\+Settings.\+Default\+Settings.\+my\+ID}
+
+
+
+Definition at line 124 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_a55388edb1bef6d76ee7c91dd69b6af5b}\label{class_default_settings_1_1_default_settings_a55388edb1bef6d76ee7c91dd69b6af5b}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!what@{what}}
+\index{what@{what}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{what}{what}}
+{\footnotesize\ttfamily Default\+Settings.\+Default\+Settings.\+what}
+
+
+
+Definition at line 94 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_ac72fcc2cc43cd7486dbb7053c32f92e0}\label{class_default_settings_1_1_default_settings_ac72fcc2cc43cd7486dbb7053c32f92e0}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!where@{where}}
+\index{where@{where}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{where}{where}}
+{\footnotesize\ttfamily Default\+Settings.\+Default\+Settings.\+where}
+
+
+
+Definition at line 93 of file Default\+Settings.\+py.
+
+\mbox{\Hypertarget{class_default_settings_1_1_default_settings_aad8cc1b9f329c57454d2a4410d69f941}\label{class_default_settings_1_1_default_settings_aad8cc1b9f329c57454d2a4410d69f941}} 
+\index{DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}!who@{who}}
+\index{who@{who}!DefaultSettings.DefaultSettings@{DefaultSettings.DefaultSettings}}
+\doxysubsubsection{\texorpdfstring{who}{who}}
+{\footnotesize\ttfamily Default\+Settings.\+Default\+Settings.\+who}
+
+
+
+Definition at line 92 of file Default\+Settings.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+scripts/\mbox{\hyperlink{_default_settings_8py}{Default\+Settings.\+py}}\end{DoxyCompactItemize}

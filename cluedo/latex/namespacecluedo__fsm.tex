@@ -1,0 +1,223 @@
+\hypertarget{namespacecluedo__fsm}{}\doxysection{cluedo\+\_\+fsm Namespace Reference}
+\label{namespacecluedo__fsm}\index{cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcluedo__fsm_1_1_exploration}{Exploration}}
+\item 
+class \mbox{\hyperlink{classcluedo__fsm_1_1hint__gen}{hint\+\_\+gen}}
+\item 
+class \mbox{\hyperlink{classcluedo__fsm_1_1_oracle}{Oracle}}
+\item 
+class \mbox{\hyperlink{classcluedo__fsm_1_1oracle__query}{oracle\+\_\+query}}
+\item 
+class \mbox{\hyperlink{classcluedo__fsm_1_1_query}{Query}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacecluedo__fsm_ad05a5ac9a187a3a821308a1ae5f1133b}{make\+\_\+ind\+\_\+of\+\_\+class\+\_\+disjoint}} (class\+\_\+name)
+\item 
+def \mbox{\hyperlink{namespacecluedo__fsm_a93dd81d9cf0a62993c50ac2c77d236c0}{user\+\_\+interface}} (msg)
+\item 
+def \mbox{\hyperlink{namespacecluedo__fsm_abb075213290a150ac729a54a6ebed386}{add\+\_\+hypothesis}} (ID, item)
+\item 
+def \mbox{\hyperlink{namespacecluedo__fsm_a66785277efef0f8ccf02f0b8fcdaacdb}{storage\+\_\+hypo}} (ID, item, hpi)
+\item 
+def \mbox{\hyperlink{namespacecluedo__fsm_ac6ae4c18c88c41e33c380bd0969064db}{winning\+\_\+sequence}} (my\+ID)
+\item 
+def \mbox{\hyperlink{namespacecluedo__fsm_a750668964c31557290ac9db1e21125ff}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{namespacecluedo__fsm_acad4225c34fb7286e9d9186c04612003}{suspects}} = \mbox{[}\char`\"{}Miss Scarlett\char`\"{},\char`\"{}Mrs White\char`\"{},\char`\"{}Mrs Peacock\char`\"{}, \char`\"{}Reverend Green\char`\"{}, \char`\"{}Professor Plum\char`\"{}, \char`\"{}Colonel Mustard\char`\"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Global declarations. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacecluedo__fsm_a510b4a3732cb17fa2ba22ecdd2b0aca2}{weapons}} = \mbox{[}\char`\"{}Dagger\char`\"{}, \char`\"{}Candle Stick\char`\"{}, \char`\"{}Revolver\char`\"{}, \char`\"{}Rope\char`\"{}, \char`\"{}Lead Pipe\char`\"{}, \char`\"{}Spanner\char`\"{}\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacecluedo__fsm_af8cdf1a1ec60c201d772eac5c30c0e84}{rooms}} = \mbox{[}\char`\"{}Hall\char`\"{}, \char`\"{}Lounge\char`\"{},\char`\"{}Dining Room\char`\"{}, \char`\"{}Kitchen\char`\"{}, \char`\"{}Ball Room\char`\"{}, \char`\"{}Conservatory\char`\"{}, \char`\"{}Billiard Room\char`\"{}, \char`\"{}Library\char`\"{}, \char`\"{}Study\char`\"{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacecluedo__fsm_a04ef5798a444d150ebd17f113a5fda53}{client}} = Armor\+Client(\char`\"{}cluedo\char`\"{}, \char`\"{}ontology\char`\"{})
+\item 
+list \mbox{\hyperlink{namespacecluedo__fsm_abb1886f615cdc0fb28ba43f98589545e}{id\+\_\+list}} = \mbox{[}$\,$\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacecluedo__fsm_ae699a7d40631f878b5821e676a794c38}{hp}} = \mbox{[}\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@package cluedo, state machine
+This node, 'cluedo_fsm', handles the states of the FSM
+divided in: EXPLORATION, QUERY, ORACLE
+\end{DoxyVerb}
+ ~\newline
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecluedo__fsm_abb075213290a150ac729a54a6ebed386}\label{namespacecluedo__fsm_abb075213290a150ac729a54a6ebed386}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!add\_hypothesis@{add\_hypothesis}}
+\index{add\_hypothesis@{add\_hypothesis}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{add\_hypothesis()}{add\_hypothesis()}}
+{\footnotesize\ttfamily def cluedo\+\_\+fsm.\+add\+\_\+hypothesis (\begin{DoxyParamCaption}\item[{}]{ID,  }\item[{}]{item }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief this function add items in the class HYPOTHESIS in the cluedo ontology
+and add an individual to the object property who, where and what, depending on 
+the kind of hint that it has received from the hint_generator. At the end it
+saves the changes and synchronize the reasoner using armor api.
+@param ID: uint32 with the number of the source
+@param item: the hint to add in the cluedo ontology as where, who or what instance 
+\end{DoxyVerb}
+ 
+
+Definition at line 143 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_a750668964c31557290ac9db1e21125ff}\label{namespacecluedo__fsm_a750668964c31557290ac9db1e21125ff}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!main@{main}}
+\index{main@{main}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def cluedo\+\_\+fsm.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 316 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_ad05a5ac9a187a3a821308a1ae5f1133b}\label{namespacecluedo__fsm_ad05a5ac9a187a3a821308a1ae5f1133b}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!make\_ind\_of\_class\_disjoint@{make\_ind\_of\_class\_disjoint}}
+\index{make\_ind\_of\_class\_disjoint@{make\_ind\_of\_class\_disjoint}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{make\_ind\_of\_class\_disjoint()}{make\_ind\_of\_class\_disjoint()}}
+{\footnotesize\ttfamily def cluedo\+\_\+fsm.\+make\+\_\+ind\+\_\+of\+\_\+class\+\_\+disjoint (\begin{DoxyParamCaption}\item[{}]{class\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief Disjoint all individuals of a class in an ontology by comunication with the armor server.
+    
+Args:
+    ind_name (str): individual to be disjointed to the class.
+    class_name (str): individual will be disjointed to this class. It will be created a new class if it does not exist.
+    
+Returns:
+    bool: True if ontology is consistent, else False
+    
+Raises:
+    armor_api.exceptions.ArmorServiceCallError: if call to ARMOR fails
+    armor_api.exceptions.ArmorServiceInternalError: if ARMOR reports an internal error
+    
+Note:
+    It returns the boolean consistency state of the ontology. This value is not updated to the last operation
+    if you are working in buffered reasoner or manipulation mode!
+\end{DoxyVerb}
+ 
+
+Definition at line 32 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_a66785277efef0f8ccf02f0b8fcdaacdb}\label{namespacecluedo__fsm_a66785277efef0f8ccf02f0b8fcdaacdb}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!storage\_hypo@{storage\_hypo}}
+\index{storage\_hypo@{storage\_hypo}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{storage\_hypo()}{storage\_hypo()}}
+{\footnotesize\ttfamily def cluedo\+\_\+fsm.\+storage\+\_\+hypo (\begin{DoxyParamCaption}\item[{}]{ID,  }\item[{}]{item,  }\item[{}]{hpi }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief this function add the last hint to the 
+list of the hypothesis if it is not present yet
+@param req: uint32 ID
+@param item: the hint to add in the list of the specific hypothesis 
+@param hpi: the array of the hypothesis that contains the hints that we got until now from that source 
+\end{DoxyVerb}
+ 
+
+Definition at line 169 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_a93dd81d9cf0a62993c50ac2c77d236c0}\label{namespacecluedo__fsm_a93dd81d9cf0a62993c50ac2c77d236c0}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!user\_interface@{user\_interface}}
+\index{user\_interface@{user\_interface}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{user\_interface()}{user\_interface()}}
+{\footnotesize\ttfamily def cluedo\+\_\+fsm.\+user\+\_\+interface (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief userinterface publisher. It sends a screen that is shown on the screen
+@param msg: String
+@return : None
+\end{DoxyVerb}
+ 
+
+Definition at line 66 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_ac6ae4c18c88c41e33c380bd0969064db}\label{namespacecluedo__fsm_ac6ae4c18c88c41e33c380bd0969064db}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!winning\_sequence@{winning\_sequence}}
+\index{winning\_sequence@{winning\_sequence}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{winning\_sequence()}{winning\_sequence()}}
+{\footnotesize\ttfamily def cluedo\+\_\+fsm.\+winning\+\_\+sequence (\begin{DoxyParamCaption}\item[{}]{my\+ID }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function recognizes and sorts into killer, weapon and room the hints of
+a complete and consistent hypothesis. In order to check if can be the winning
+sequence of the game
+@param my ID: string with the code of one source
+@return string killer, weapon and room
+\end{DoxyVerb}
+ 
+
+Definition at line 183 of file cluedo\+\_\+fsm.\+py.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecluedo__fsm_a04ef5798a444d150ebd17f113a5fda53}\label{namespacecluedo__fsm_a04ef5798a444d150ebd17f113a5fda53}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!client@{client}}
+\index{client@{client}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily cluedo\+\_\+fsm.\+client = Armor\+Client(\char`\"{}cluedo\char`\"{}, \char`\"{}ontology\char`\"{})}
+
+
+
+Definition at line 25 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_ae699a7d40631f878b5821e676a794c38}\label{namespacecluedo__fsm_ae699a7d40631f878b5821e676a794c38}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!hp@{hp}}
+\index{hp@{hp}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{hp}{hp}}
+{\footnotesize\ttfamily list cluedo\+\_\+fsm.\+hp = \mbox{[}\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]},\mbox{[}$\,$\mbox{]}\mbox{]}}
+
+
+
+Definition at line 29 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_abb1886f615cdc0fb28ba43f98589545e}\label{namespacecluedo__fsm_abb1886f615cdc0fb28ba43f98589545e}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!id\_list@{id\_list}}
+\index{id\_list@{id\_list}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{id\_list}{id\_list}}
+{\footnotesize\ttfamily list cluedo\+\_\+fsm.\+id\+\_\+list = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line 28 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_af8cdf1a1ec60c201d772eac5c30c0e84}\label{namespacecluedo__fsm_af8cdf1a1ec60c201d772eac5c30c0e84}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!rooms@{rooms}}
+\index{rooms@{rooms}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{rooms}{rooms}}
+{\footnotesize\ttfamily list cluedo\+\_\+fsm.\+rooms = \mbox{[}\char`\"{}Hall\char`\"{}, \char`\"{}Lounge\char`\"{},\char`\"{}Dining Room\char`\"{}, \char`\"{}Kitchen\char`\"{}, \char`\"{}Ball Room\char`\"{}, \char`\"{}Conservatory\char`\"{}, \char`\"{}Billiard Room\char`\"{}, \char`\"{}Library\char`\"{}, \char`\"{}Study\char`\"{}\mbox{]}}
+
+
+
+Definition at line 23 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_acad4225c34fb7286e9d9186c04612003}\label{namespacecluedo__fsm_acad4225c34fb7286e9d9186c04612003}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!suspects@{suspects}}
+\index{suspects@{suspects}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{suspects}{suspects}}
+{\footnotesize\ttfamily list cluedo\+\_\+fsm.\+suspects = \mbox{[}\char`\"{}Miss Scarlett\char`\"{},\char`\"{}Mrs White\char`\"{},\char`\"{}Mrs Peacock\char`\"{}, \char`\"{}Reverend Green\char`\"{}, \char`\"{}Professor Plum\char`\"{}, \char`\"{}Colonel Mustard\char`\"{}\mbox{]}}
+
+
+
+Global declarations. 
+
+
+
+Definition at line 21 of file cluedo\+\_\+fsm.\+py.
+
+\mbox{\Hypertarget{namespacecluedo__fsm_a510b4a3732cb17fa2ba22ecdd2b0aca2}\label{namespacecluedo__fsm_a510b4a3732cb17fa2ba22ecdd2b0aca2}} 
+\index{cluedo\_fsm@{cluedo\_fsm}!weapons@{weapons}}
+\index{weapons@{weapons}!cluedo\_fsm@{cluedo\_fsm}}
+\doxysubsubsection{\texorpdfstring{weapons}{weapons}}
+{\footnotesize\ttfamily list cluedo\+\_\+fsm.\+weapons = \mbox{[}\char`\"{}Dagger\char`\"{}, \char`\"{}Candle Stick\char`\"{}, \char`\"{}Revolver\char`\"{}, \char`\"{}Rope\char`\"{}, \char`\"{}Lead Pipe\char`\"{}, \char`\"{}Spanner\char`\"{}\mbox{]}}
+
+
+
+Definition at line 22 of file cluedo\+\_\+fsm.\+py.
+

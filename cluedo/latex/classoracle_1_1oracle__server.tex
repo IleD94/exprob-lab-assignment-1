@@ -1,0 +1,106 @@
+\hypertarget{classoracle_1_1oracle__server}{}\doxysection{oracle.\+oracle\+\_\+server Class Reference}
+\label{classoracle_1_1oracle__server}\index{oracle.oracle\_server@{oracle.oracle\_server}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classoracle_1_1oracle__server_ad40440f47a1f6ca98d67451077235b72}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classoracle_1_1oracle__server_a72823414e79a4ddb002601f4f5a3118f}{random\+\_\+winning\+\_\+\+ID}} (self)
+\item 
+def \mbox{\hyperlink{classoracle_1_1oracle__server_aa565921870040167e6b8ad7530a46540}{comparison\+\_\+callback}} (self, req)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classoracle_1_1oracle__server_a3ff229f1dea0ed88650baa00dfc09219}{oracle\+\_\+service}}
+\item 
+\mbox{\hyperlink{classoracle_1_1oracle__server_a0ea43e0c71cea829211b619084beca6d}{Winning\+ID}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Class of the oracle_server it manages the server of the 
+compare_hypothesis service. It has one function sets randomly the winning ID of
+the game and the callback of the service that 
+compares that with the ID of the accusation hypothesis
+\end{DoxyVerb}
+ 
+
+Definition at line 21 of file oracle.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classoracle_1_1oracle__server_ad40440f47a1f6ca98d67451077235b72}\label{classoracle_1_1oracle__server_ad40440f47a1f6ca98d67451077235b72}} 
+\index{oracle.oracle\_server@{oracle.oracle\_server}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!oracle.oracle\_server@{oracle.oracle\_server}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def oracle.\+oracle\+\_\+server.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 29 of file oracle.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classoracle_1_1oracle__server_aa565921870040167e6b8ad7530a46540}\label{classoracle_1_1oracle__server_aa565921870040167e6b8ad7530a46540}} 
+\index{oracle.oracle\_server@{oracle.oracle\_server}!comparison\_callback@{comparison\_callback}}
+\index{comparison\_callback@{comparison\_callback}!oracle.oracle\_server@{oracle.oracle\_server}}
+\doxysubsubsection{\texorpdfstring{comparison\_callback()}{comparison\_callback()}}
+{\footnotesize\ttfamily def oracle.\+oracle\+\_\+server.\+comparison\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{req }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief it is the callback of the compare hypothesis service 
+compare one ID that will be the winning one of the game
+custom service: HypothesisID
+     uint32 ID
+     ---
+     bool success
+@param req: uint32 ID
+@return bool: true if the the elements are the same, false if they are not
+\end{DoxyVerb}
+ 
+
+Definition at line 43 of file oracle.\+py.
+
+\mbox{\Hypertarget{classoracle_1_1oracle__server_a72823414e79a4ddb002601f4f5a3118f}\label{classoracle_1_1oracle__server_a72823414e79a4ddb002601f4f5a3118f}} 
+\index{oracle.oracle\_server@{oracle.oracle\_server}!random\_winning\_ID@{random\_winning\_ID}}
+\index{random\_winning\_ID@{random\_winning\_ID}!oracle.oracle\_server@{oracle.oracle\_server}}
+\doxysubsubsection{\texorpdfstring{random\_winning\_ID()}{random\_winning\_ID()}}
+{\footnotesize\ttfamily def oracle.\+oracle\+\_\+server.\+random\+\_\+winning\+\_\+\+ID (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}/brief Randomly it chooses one ID that 
+will be the winning one of the game
+\end{DoxyVerb}
+ 
+
+Definition at line 33 of file oracle.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classoracle_1_1oracle__server_a3ff229f1dea0ed88650baa00dfc09219}\label{classoracle_1_1oracle__server_a3ff229f1dea0ed88650baa00dfc09219}} 
+\index{oracle.oracle\_server@{oracle.oracle\_server}!oracle\_service@{oracle\_service}}
+\index{oracle\_service@{oracle\_service}!oracle.oracle\_server@{oracle.oracle\_server}}
+\doxysubsubsection{\texorpdfstring{oracle\_service}{oracle\_service}}
+{\footnotesize\ttfamily oracle.\+oracle\+\_\+server.\+oracle\+\_\+service}
+
+
+
+Definition at line 30 of file oracle.\+py.
+
+\mbox{\Hypertarget{classoracle_1_1oracle__server_a0ea43e0c71cea829211b619084beca6d}\label{classoracle_1_1oracle__server_a0ea43e0c71cea829211b619084beca6d}} 
+\index{oracle.oracle\_server@{oracle.oracle\_server}!WinningID@{WinningID}}
+\index{WinningID@{WinningID}!oracle.oracle\_server@{oracle.oracle\_server}}
+\doxysubsubsection{\texorpdfstring{WinningID}{WinningID}}
+{\footnotesize\ttfamily oracle.\+oracle\+\_\+server.\+Winning\+ID}
+
+
+
+Definition at line 39 of file oracle.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+scripts/\mbox{\hyperlink{oracle_8py}{oracle.\+py}}\end{DoxyCompactItemize}
