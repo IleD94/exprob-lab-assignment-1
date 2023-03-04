@@ -55,6 +55,10 @@ This service was implemented by EmaroLab. To have more info about that goes to: 
 In this node we implemented the default settings of the game, adding classes: person, rooms and weapons to the ontology. Moreover here it is implemented the generation of hints. That are comunicated using the Hint service, to have more info about the implementation of the service, please go to the doxygen documentation of this repository, in the cluedo folder.
 ### User interface
 This node is used to show, printing on the display some messages, to the user what is happening in the game. To do that a String message is used to be published to the proper topic. For more info, please, refer to doxygen documentation in the cluedo folder of this repository.
+
+![image](https://user-images.githubusercontent.com/80365922/222924326-ebe58210-de53-43b9-8ea9-7f1d9775ff43.png)
+
+
 ### Cluedo FSM
 Thid node implements a final state machine using smach package for ros. The states are: Exploration, Query and Oracle.
 1. Exploration: simulates, using sleep of some seconds, the moving from a room to another of the robot. In this state we look for hints and collect them.
@@ -63,6 +67,10 @@ Thid node implements a final state machine using smach package for ros. The stat
 
 ![image](https://user-images.githubusercontent.com/80365922/222924204-58142120-ba6c-41d8-aaef-447291a95d68.png)
 
+### Oracle
+Here it is implemented a service that waits for the request of the cluedo state machine, from the oracle state, like in the picture below, with the winning ID, it compares the two ids and return a boolean value. True if the hypothesis is correct and the player wins the game, false if not.
+
+![image](https://user-images.githubusercontent.com/80365922/222924362-a67aaa75-9fc3-42e3-90b2-49c95e209e2f.png)
 ## Component diagram
 ![assignment1 drawio (1)](https://user-images.githubusercontent.com/80365922/222924085-c6add65b-8e76-40ae-b171-f53fa523d7b5.png)
 
