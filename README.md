@@ -72,7 +72,7 @@ Thid node implements a final state machine using smach package for ros. The stat
 In order to run the code you have to launch the launch file present in the launch in cluedo folder.
 
 ```
-roslaunch cluedo cluedo.launch'
+roslaunch cluedo cluedo.launch
 ```
 
 ## Contacts
