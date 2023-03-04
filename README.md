@@ -23,6 +23,7 @@ The weapon used to kill Mr. Black can be one of these:
 5. Lead Pipe
 6. Spanner
 
+
 ## Rooms
 We don't know also the place of the murder. It's one among the rooms of the house:
 1. Hall
@@ -62,9 +63,16 @@ Thid node implements a final state machine using smach package for ros. The stat
 (AGGIUNGERE IMMAGINE)
 
 ## Component diagram
+![assignment1 drawio (1)](https://user-images.githubusercontent.com/80365922/222924085-c6add65b-8e76-40ae-b171-f53fa523d7b5.png)
+
+
 (AGGIUNGERE COMPONENT DIAGRAM CON QUALCHE SPIEGAZIONE)
 
 ## Sequence diagram
+
+![assignment1seq drawio](https://user-images.githubusercontent.com/80365922/222924092-ca26d96e-2993-4196-9dea-55d8d132c31f.png)
+
+
 (AGGIUNGERE SEQUENCE DIAGRAM CON QUALCHE SPIEGAZIONE)
 
 ## How to run
