@@ -60,7 +60,8 @@ Thid node implements a final state machine using smach package for ros. The stat
 1. Exploration: simulates, using sleep of some seconds, the moving from a room to another of the robot. In this state we look for hints and collect them.
 2. Query: asks some information about the hypothesis of the previous collected hint. Here we can understand if our hypothesis is consistent, incomplete or inconsistent. If the hypothesis is complete we can go to the next state, otherwise we need to go around searching for some more hints in the previous state.
 3. Oracle: stores the winning hypothesis of the game. In particular a service HypothesisID stores the winning ID of the game. In this state we compare our hypothesis to the winning one to understand if we won or if we have to go back to the first state and continue the quest.
-(AGGIUNGERE IMMAGINE)
+
+![image](https://user-images.githubusercontent.com/80365922/222924204-58142120-ba6c-41d8-aaef-447291a95d68.png)
 
 ## Component diagram
 ![assignment1 drawio (1)](https://user-images.githubusercontent.com/80365922/222924085-c6add65b-8e76-40ae-b171-f53fa523d7b5.png)
@@ -82,6 +83,9 @@ In order to run the code you have to launch the launch file present in the launc
 ```
 roslaunch cluedo cluedo.launch
 ```
+## Video
+
+
 
 ## Contacts
 
