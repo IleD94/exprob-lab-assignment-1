@@ -2,8 +2,8 @@
 ## Introduction
 This project is the first part out of three of the implementation of Cluedo Game in simulation environment. 
 In this part we have implemented the architecture of the game, without any real movement of the player, a robot Detective.
-The architecture is composed of 6 components: Ontology, Armor service, Default Settings, Cluedo FSM, Oracle e User Interface.
-The rules of the games are simple. There was a omicide, Mr. Black was killed by someone, somewhere with some weapone. There is a detective, Detective Bot, that goes around (not implemented yet in this part) to find hints to solve the case!
+In the architecture we have 6 components: Ontology, Armor service, Default Settings, Cluedo FSM, Oracle e User Interface.
+The rules of the games are simple. There was an omicide, Mr. Black was killed by someone, somewhere with some weapon. There is a detective, Detective Bot, that goes around (not implemented yet in this part) to find hints to solve the case!
 
 ## Suspects
 Mr. Black was killed by some one. The killer is hiddin among these suspects:
