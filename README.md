@@ -74,15 +74,9 @@ Here it is implemented a service that waits for the request of the cluedo state 
 ## Component diagram
 ![assignment1 drawio (1)](https://user-images.githubusercontent.com/80365922/222924085-c6add65b-8e76-40ae-b171-f53fa523d7b5.png)
 
-
-(AGGIUNGERE COMPONENT DIAGRAM CON QUALCHE SPIEGAZIONE)
-
 ## Sequence diagram
 
 ![assignment1seq drawio](https://user-images.githubusercontent.com/80365922/222924092-ca26d96e-2993-4196-9dea-55d8d132c31f.png)
-
-
-(AGGIUNGERE SEQUENCE DIAGRAM CON QUALCHE SPIEGAZIONE)
 
 ## How to run
 
