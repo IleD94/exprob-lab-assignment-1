@@ -79,6 +79,10 @@ Here it is implemented a service that waits for the request of the cluedo state 
 ![assignment1seq drawio](https://user-images.githubusercontent.com/80365922/222924092-ca26d96e-2993-4196-9dea-55d8d132c31f.png)
 
 ## How to run
+To install this package, please follow the command below:
+```
+git clone https://github.com/IleD94/exprob_ass_1
+```
 
 In order to run the code you have to launch the launch file present in the launch in cluedo folder.
 
