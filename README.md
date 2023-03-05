@@ -102,7 +102,7 @@ https://user-images.githubusercontent.com/80365922/222978412-8f933d34-c551-40d4-
 ## System's limitations
 A possible limitation in the system is in the generation of random hypothesis. The game can be very long, considering that we can have 10 hypothesis and that the inconsistent can have potentially infinite values. This make the game really long.
 
-## Possible improvements:
+## Possible improvements
 To improve the system we could have a maximum number of items for every inconsistent hypothesis
 
 ## Contacts
