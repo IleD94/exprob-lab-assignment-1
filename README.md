@@ -1,4 +1,8 @@
 # exprob_ass1
+
+![image](https://user-images.githubusercontent.com/80365922/222982473-5d452e0b-6312-4ff6-943e-64a08d113445.png)
+
+
 ## Introduction
 This project is the first part out of three of the implementation of Cluedo Game in simulation environment. 
 In this part we have implemented the architecture of the game, without any real movement of the player, a robot Detective.
